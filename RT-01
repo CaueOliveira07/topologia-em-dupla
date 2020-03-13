@@ -1,0 +1,44 @@
+RT-01
+
+Hostname
+Banner
+Usuário
+Senha Enable
+Senha Console
+Domínio
+Chave de SSH
+Senha VTY
+Login local na Console e VTY
+Encriptar as senhas
+Colocar Ip e Máscara (192.168.0.1 / 255.255.255.0) (172.16.0.1 / 255.255.0.0)
+
+Comandos
+
+enable
+configure terminal
+hostname RT-01
+banner motd "ACESSO APENAS PARA PESSOAS AUTORIZADAS!"
+username caueoliveira privilege 15 secret caue*enable
+enable secret caue*enable
+line console 0
+password caue*console
+login
+exit
+ip domain-name  1rede.local
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+transport input ssh
+password caue*vty
+login local
+exit
+service password-encryption
+interface gigabitethernet 0/0
+ip address 192.168.0.1 255.255.255.0
+description CONECTADA A REDE 1
+no shutdown
+interface gigabitethernet 0/1
+ip address 172.16.0.1 255.255.0.0
+description CONECTADA A REDE 2
+no shutdown
+end
+write memory

@@ -1,0 +1,13 @@
+PC-01
+
+Ip: 192.168.0.10
+Máscara: 255.255.255.0
+Gateway: 192.168.0.1
+Nome na topologia
+
+PC-02
+
+Ip: 172.16.0.10
+Máscara: 255.255.0.0
+Gateway: 172.16.0.1
+Nome na topologia

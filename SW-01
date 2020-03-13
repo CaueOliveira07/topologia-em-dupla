@@ -1,0 +1,40 @@
+SW-01
+
+Hostname
+Banner
+Usuário
+Senha Enable
+Senha Console
+Domínio
+Chave de SSH
+Senha VTY
+Login local na Console e VTY
+Encriptar as senhas
+Colocar Ip, Máscara e Gateway
+
+Comandos
+
+enable
+configure terminal
+hostname SW-01
+banner motd "ACESSO APENAS PARA PESSOAS AUTORIZADAS!"
+username caueoliveira privilege 15 secret caue*enable
+enable secret caue*enable
+line console 0
+password caue*console
+login
+exit
+ip domain-name  1rede.local
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+trasport input ssh
+password caue*vty
+login local
+exit
+service password-encryption
+interface vlan 1
+ip address 192.168.255.254 255.255.255.0
+no shutdown
+ip default-gateway 192.168.0.1
+end
+write memory
